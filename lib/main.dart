@@ -23,7 +23,7 @@ class MyAppState extends State<MyApp> {
     print("chosen Answer");
     setState(() {
       qIndex++;
-      if(qIndex==3){qIndex=0;}
+      if(qIndex==4){qIndex=0;}
     });
   }
 
