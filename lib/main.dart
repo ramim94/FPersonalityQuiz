@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterpersonalityquiz/question.dart';
 
 void main() => runApp(MyApp());
 
@@ -33,7 +34,7 @@ class _MyAppState extends State<MyApp> {
       appBar: AppBar(title: Text("My App")),
       body: Column(
         children: <Widget>[
-          Text(_question[_qIndex]),
+          Question(_question[_qIndex]),
           RaisedButton(child: Text("Answer 1"), onPressed: _answeredQuestion,),
           RaisedButton(child: Text("Answer 2"), onPressed: _answeredQuestion,),
           RaisedButton(child: Text("Answer 3"), onPressed: _answeredQuestion,),
