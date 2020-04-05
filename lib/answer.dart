@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Answer extends StatelessWidget {
-  String answerText;
+  Map<String,Object> answerText;
   var onPressedFunction;
 
   Answer(this.answerText, this.onPressedFunction);
@@ -13,8 +13,8 @@ class Answer extends StatelessWidget {
       margin: EdgeInsets.only(left: 15, top: 0, right: 15, bottom: 0),
       child: RaisedButton(
         color: Colors.blueGrey,
-        child: Text(answerText),
-        onPressed: onPressedFunction,
+        child: Text(answerText["text"]),
+        onPressed:() => onPressedFunction(answerText["score"]),
       ),
     );
   }
