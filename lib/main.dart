@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterpersonalityquiz/answer.dart';
 import 'package:flutterpersonalityquiz/question.dart';
+import 'package:flutterpersonalityquiz/result.dart';
 
 void main() => runApp(MyApp());
 
@@ -32,7 +33,7 @@ class _MyAppState extends State<MyApp> {
   ];
 
   void _answeredQuestion(int score){
-    print("chosen Answer");
+//    print("chosen Answer");
     setState(() {
       if(_qIndex<_question.length){
         _totalScore+=score;
@@ -41,6 +42,13 @@ class _MyAppState extends State<MyApp> {
 //      else{
 //        _qIndex=0;
 //      }
+    });
+  }
+
+  void _resetQuiz(){
+    setState(() {
+      _totalScore=0;
+      _qIndex=0;
     });
   }
 
@@ -60,8 +68,7 @@ class _MyAppState extends State<MyApp> {
           return Answer(eachAnswer,_answeredQuestion);
         }).toList()
         ],
-      ): Center(child: Text("You've Completed the quiz with score of "+_totalScore.toString()),
-      ),
+      ): Result(_totalScore,_resetQuiz),
     ),
     );
   }
