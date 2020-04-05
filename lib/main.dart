@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterpersonalityquiz/answer.dart';
 import 'package:flutterpersonalityquiz/question.dart';
 
 void main() => runApp(MyApp());
@@ -14,10 +15,18 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _qIndex = 0;
   var _question = [
-    'What\'s your favorite color?',
-    'Where were you born?',
-    'What is your hobby?',
-    "What is your name?"
+    {"questionText" : "What\'s your favorite color?",
+    "answers" : ["Red", "Black", "White"]
+    },
+    {"questionText" : "Where were you born?",
+      "answers" : ["Chittagong", "Dhaka", "Coxs Bazar"]
+    },
+    {"questionText" : "What is your hobby?",
+      "answers" : ["Gaming", "Coding", "Sleeping"]
+    },
+    {"questionText" : "What is your name?",
+      "answers" : ["Ramim", "Hamim", "Shamim"]
+    }
   ];
 
   void _answeredQuestion(){
@@ -34,10 +43,14 @@ class _MyAppState extends State<MyApp> {
       appBar: AppBar(title: Text("My App")),
       body: Column(
         children: <Widget>[
-          Question(_question[_qIndex]),
-          RaisedButton(child: Text("Answer 1"), onPressed: _answeredQuestion,),
-          RaisedButton(child: Text("Answer 2"), onPressed: _answeredQuestion,),
-          RaisedButton(child: Text("Answer 3"), onPressed: _answeredQuestion,),
+          Question(_question[_qIndex]["questionText"]),
+//          Answer("Answer 1", _answeredQuestion,),
+//          Answer("Answer 2", _answeredQuestion,),
+//          Answer("Answer 3", _answeredQuestion,),
+          ...(_question[_qIndex]["answers"] as List<String>)
+            .map((eachAnswer) {
+          return Answer(eachAnswer,_answeredQuestion);
+        }).toList()
         ],
       ),
     ),
