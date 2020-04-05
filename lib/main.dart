@@ -32,11 +32,12 @@ class _MyAppState extends State<MyApp> {
   void _answeredQuestion(){
     print("chosen Answer");
     setState(() {
-      if(_qIndex<_question.length-1){
+      if(_qIndex<_question.length){
         _qIndex++;
-      }else{
-        _qIndex=0;
       }
+//      else{
+//        _qIndex=0;
+//      }
     });
   }
 
@@ -44,7 +45,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(home: Scaffold(
       appBar: AppBar(title: Text("My App")),
-      body: Column(
+      body: _qIndex < _question.length ? Column(
         children: <Widget>[
           Question(_question[_qIndex]["questionText"]),
 //          Answer("Answer 1", _answeredQuestion,),
@@ -56,6 +57,7 @@ class _MyAppState extends State<MyApp> {
           return Answer(eachAnswer,_answeredQuestion);
         }).toList()
         ],
+      ): Center(child: Text("You've Completed the quiz"),
       ),
     ),
     );
