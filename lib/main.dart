@@ -14,7 +14,7 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _qIndex = 0;
-  var _question = [
+  final _question = [
     {"questionText" : "What\'s your favorite color?",
     "answers" : ["Red", "Black", "White"]
     },
@@ -32,8 +32,11 @@ class _MyAppState extends State<MyApp> {
   void _answeredQuestion(){
     print("chosen Answer");
     setState(() {
-      _qIndex++;
-      if(_qIndex==4){_qIndex=0;}
+      if(_qIndex<_question.length-1){
+        _qIndex++;
+      }else{
+        _qIndex=0;
+      }
     });
   }
 
@@ -47,6 +50,7 @@ class _MyAppState extends State<MyApp> {
 //          Answer("Answer 1", _answeredQuestion,),
 //          Answer("Answer 2", _answeredQuestion,),
 //          Answer("Answer 3", _answeredQuestion,),
+        //foreign language
           ...(_question[_qIndex]["answers"] as List<String>)
             .map((eachAnswer) {
           return Answer(eachAnswer,_answeredQuestion);
