@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutterpersonalityquiz/answer.dart';
+import 'package:flutterpersonalityquiz/answer_text.dart';
 import 'package:flutterpersonalityquiz/question.dart';
 import 'package:flutterpersonalityquiz/result.dart';
 
@@ -57,15 +58,18 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(home: Scaffold(
       appBar: AppBar(title: Text("My App")),
       body: _qIndex < _question.length ? Column(
+        mainAxisAlignment: MainAxisAlignment.start,
         children: <Widget>[
           Question(_question[_qIndex]["questionText"]),
+          SizedBox(height: 50,),
 //          Answer("Answer 1", _answeredQuestion,),
 //          Answer("Answer 2", _answeredQuestion,),
 //          Answer("Answer 3", _answeredQuestion,),
         //foreign language
           ...(_question[_qIndex]["answers"] as List<Map<String,Object>>)
             .map((eachAnswer) {
-          return Answer(eachAnswer,_answeredQuestion);
+//          return Answer(eachAnswer,_answeredQuestion);
+          return AnswerTextBox();
         }).toList()
         ],
       ): Result(_totalScore,_resetQuiz),

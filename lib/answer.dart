@@ -11,9 +11,13 @@ class Answer extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: EdgeInsets.only(left: 15, top: 0, right: 15, bottom: 0),
-      child: RaisedButton(
-        color: Colors.blueGrey,
-        child: Text(answerText["text"]),
+      child: FlatButton(
+        color: Colors.blueAccent,
+        child: Text(answerText["text"],
+            style: TextStyle(
+              color: Colors.white,
+            ),
+        ),
         onPressed:() => onPressedFunction(answerText["score"]),
       ),
     );
